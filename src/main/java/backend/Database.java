@@ -5,12 +5,11 @@ import com.google.gson.reflect.TypeToken;
 import de.imut.ec.keyvaluestore.KeyValueStore;
 
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-/**
- * Created by smint on 10.05.17.
- */
 public class Database {
 
     private static Database INSTANCE;
@@ -47,20 +46,45 @@ public class Database {
 
     public void addBook(Book book) {
         books.put(book.getIsbn(), book);
+        System.out.println("Errorr addBook 1");
+        if(!categorys.containsKey(book.getCategory())) {
+            Category cg = new Category(book.getCategory(), book.getCategory());
+            cg.getBooks().add(book.getIsbn());
+            addCategory(cg);
+        }
 
+        System.out.println("Errorr addBook 2");
     }
 
     public void removeBook(Book book) {
+        categorys.get(book.getCategory()).getBooks().remove(book.getIsbn());
         books.remove(book.getIsbn());
     }
 
     public void removeBook(String isbn) {
+        categorys.get(books.get(isbn).getCategory()).getBooks().remove(isbn);
         books.remove(isbn);
     }
 
     public void addCategory(String name, String shortcut) {
-        if(!categorys.containsKey(name)) {
-            categorys.put(name, new Category(name, shortcut));
+        Category cg = new Category(name, shortcut);
+        categorys.put(shortcut, cg);
+        getCategorys();
+    }
+
+    public void addCategory(Category category) {
+        categorys.put(category.getShortcut(),category);
+    }
+
+    public void removeCategory(String shortcut) {
+        if(categorys.containsKey(shortcut)) {
+            String temp = "";
+            while(!categorys.get(shortcut).getBooks().isEmpty()) {
+                temp = categorys.get(shortcut).getBooks().get(0);
+                books.remove(temp);
+                categorys.get(shortcut).getBooks().remove(temp);
+            }
+            categorys.remove(shortcut);
         }
     }
 
@@ -78,21 +102,49 @@ public class Database {
 
     public void load() {
         Type booksType = new TypeToken<HashMap<String, Book>>() {}.getType();
-        Type categorysType = new TypeToken<HashMap<String, Book>>() {}.getType();
+        Type categorysType = new TypeToken<HashMap<String, Category>>() {}.getType();
 
         books = gson.fromJson(kvs.get(booksKey), booksType);
         categorys = gson.fromJson(kvs.get(categorysKey), categorysType);
     }
 
     public Map<String, Book> getBooks() {
+        load();
+        if(books == null) {
+            books = new HashMap<String, Book>();
+        }
+        if(books.size() == 0) {
+            addBook(getBookPlaceholder());
+        } else if(books.size() > 1 && books.containsKey("placeholder")){
+            books.remove("placeholder");
+        }
         return books;
     }
 
     public Map<String, Category> getCategorys() {
-        //load(); //TODO remove
+        load();
+        if(categorys == null) {
+            categorys = new HashMap<String, Category>();
+        }
+        if(categorys.size() == 0) {
+           addCategory(getCategoryPlaceholder());
+        } else if(categorys.size() > 1 && categorys.containsKey("placeholder")){
+            removeCategory("placeholder");
+        }
         return categorys;
     }
 
+    private Category getCategoryPlaceholder() {
+        Category cg = new Category("Keine Vorhanden","placeholder");
+        cg.getBooks().add("placeholder");
+        return cg;
+    }
+
+    private Book getBookPlaceholder() {
+        Book book = new Book();
+        book.initPlaceholder();
+        return book;
+    }
     public void setCategorys(Map<String, Category> categorys) {
         this.categorys = categorys;
     }

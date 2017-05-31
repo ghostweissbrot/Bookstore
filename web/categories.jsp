@@ -24,7 +24,7 @@
 
 <%
     Database db = Database.getInstance();
-    //db.load();
+
 %>
 
 <nav class="nav has-shadow">
@@ -97,8 +97,9 @@
                 <ul class="menu-list">
                     <%
                         for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
-                            <li><a href="<%entry.getKey();%>.html"><%entry.getValue().getName();%></a></li>
-                           <%}%>
+                    <li><a href="<%=entry.getKey()%>.html"><%=entry.getValue().getName()%>
+                    </a></li>
+                    <%}%>
                 </ul>
             </aside>
         </div>
@@ -106,36 +107,21 @@
             <div class="container is-fluid">
                 <div class="column"></div>
                 <div class="columns is-multiline">
+                    <% for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
                     <div class="column is-2">
                         <div class="card has-text-centered">
                             <div class="card-image">
-                                <a href="krimis.html"><img
-                                        src="https://www.randomhouse.de/content/edition/covervoila_hires/Larsson_SVerblendung_160798.jpg"
+                                <a href="<%=entry.getKey()%>"><img
+                                        src="<%=db.getBooks().get(entry.getValue().getBooks().get(0)).getImage_url()%>"
                                         width="200" height="200"></a>
                             </div>
-                            <div class="card-content"><a href="krimis.html" class="title">Krimis</a></div>
+                            <div class="card-content"><a href="<%=entry.getKey()%>.html"
+                                                         class="title"><%=entry.getValue().getName()%>
+                            </a></div>
                         </div>
                     </div>
-                    <div class="column is-2">
-                        <div class="card has-text-centered">
-                            <div class="card-image">
-                                <a href="romane.html"><img
-                                        src="https://images-na.ssl-images-amazon.com/images/I/811j6HA9XdL.jpg"
-                                        width="200" height="200"></a>
-                            </div>
-                            <div class="card-content"><a href="romane.html" class="title">Romane</a></div>
-                        </div>
-                    </div>
-                    <div class="column is-2">
-                        <div class="card has-text-centered">
-                            <div class="card-image">
-                                <a href="fantasy.html"><img
-                                        src="https://www.klett-cotta.de/media/1/9783608960891.jpg"
-                                        width="200" height="200"></a>
-                            </div>
-                            <div class="card-content"><a href="fantasy.html" class="title">Fantasy</a></div>
-                        </div>
-                    </div>
+                    <%}%>
+
                 </div>
             </div>
         </div>

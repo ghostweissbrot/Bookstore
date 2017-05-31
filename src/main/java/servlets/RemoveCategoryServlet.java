@@ -1,7 +1,5 @@
 package servlets;
 
-import backend.Book;
-import backend.Category;
 import backend.Database;
 
 import javax.servlet.ServletException;
@@ -14,7 +12,7 @@ import java.io.PrintWriter;
 /**
  * Created by smint on 31.05.17.
  */
-public class AddCategoryServlet extends HttpServlet {
+public class RemoveCategoryServlet extends HttpServlet {
 
     private Database database;
 
@@ -38,11 +36,6 @@ public class AddCategoryServlet extends HttpServlet {
                 "            <table>\n" +
                 "                <tr>\n" +
                 "                    <td>\n" +
-                "                      <span style=\"width:110px; display: inline-block;\">Name:</span><input type=\"name\" name=\"name\" required/>\n" +
-                "                    </td>\n" +
-                "                </tr>\n" +
-                "                <tr>\n" +
-                "                    <td>\n" +
                 "                      <span style=\"width:110px; display: inline-block;\">Kuerzel:</span><input type=\"shortcut\" name=\"shortcut\" required/>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
@@ -63,11 +56,10 @@ public class AddCategoryServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
 
         try {
-            String name = request.getParameter("name");
             String shortcut = request.getParameter("shortcut");
 
             database = Database.getInstance();
-            database.addCategory(name, shortcut);
+            database.removeCategory(shortcut);
             database.save();
 
             response.sendRedirect("/categories");

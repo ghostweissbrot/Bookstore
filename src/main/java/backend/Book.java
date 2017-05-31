@@ -1,23 +1,12 @@
 package backend;
 
-/**
- * Created by smint on 10.05.17.
- */
+
 public class Book {
 
     private String title;
     private String author;
     private String publisher;
     private String category;
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     private String releasedate;
     private String isbn;
     private String description;
@@ -86,5 +75,26 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void initPlaceholder() {
+        String ph = "placeholder";
+        title = ph;
+        author = ph;
+        publisher = ph;
+        category = ph;
+        releasedate = ph;
+        isbn = ph;
+        description = ph;
+        image_url = "http://funnypictures4.fjcdn.com/pictures/Still+nothing+to+see+here+more+appropriate+than+ever+for_d048f3_5678875.jpg";
+        price= 0.00;
     }
 }

@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by smint on 31.05.17.
- */
 public class Category {
 
     private String name;

@@ -23,6 +23,26 @@
         <servlet-name>addCategory</servlet-name>
         <url-pattern>/addCategory</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>removeCategory</servlet-name>
+        <servlet-class>servlets.RemoveCategoryServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>removeCategory</servlet-name>
+        <url-pattern>/removeCategory</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>addBook</servlet-name>
+        <servlet-class>servlets.AddBookServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>addBook</servlet-name>
+        <url-pattern>/addBook</url-pattern>
+    </servlet-mapping>
 
 </web-app>
 
