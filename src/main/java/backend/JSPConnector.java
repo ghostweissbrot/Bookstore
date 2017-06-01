@@ -14,23 +14,23 @@ public class JSPConnector {
          return "error";
         }
 
-        if(db.getCategorys().get(category).getBooks().size() < 2) {
-            if(db.getCategorys().get(category).getBooks().contains("placeholder")) {
-                return "Keine Bücher vorhanden.";
-            }
+        if(db.getCategorys().get(category).getBooks().size() < 1) {
+            stb.append("Keine Bücher vorhanden.");
+            return stb.toString();
         }
-        for(String isbn : db.getCategorys().get(category).getBooks()) {
+
+        for(Map.Entry<String, Book> entry : db.getCategorys().get(category).getBooks().entrySet()) {
             stb.append("<div class=\"column is-2\">\n" +
                     "                        <a href=\"\">\n" +
                     "                            <div class=\"card has-text-centered\">\n" +
                     "                                <div class=\"card-image\">\n" +
                     "                                    <img\n" +
-                    "                                            src=\""+ db.getBooks().get(isbn).getImage_url() + "\"\n" +
+                    "                                            src=\""+ entry.getValue().getImage_url() + "\"\n" +
                     "                                            width=\"150\" height=\"200\">\n" +
                     "                                </div>\n" +
                     "                                <div class=\"card-content\">\n" +
-                    "                                    <p class=\"title is-4\">"+db.getBooks().get(isbn).getTitle()+"</p>\n" +
-                    "                                    <p class=\"subtitle is-6\">"+db.getBooks().get(isbn).getAuthor()+"</p>\n" +
+                    "                                    <p class=\"title is-4\">"+entry.getValue().getTitle()+"</p>\n" +
+                    "                                    <p class=\"subtitle is-6\">"+entry.getValue().getAuthor()+"</p>\n" +
                     "                                </div>\n" +
                     "\n" +
                     "                                <footer class=\"card-footer\">\n" +
@@ -41,7 +41,7 @@ public class JSPConnector {
                     "                                                  height=\"60\"\n" +
                     "                                                  width=\"60\">\n" +
                     "                                         </figure>\n" +
-                    "                                         In den Warenkorb - "+db.getBooks().get(isbn).getPrice()+"&euro;\n" +
+                    "                                         In den Warenkorb - "+entry.getValue().getPrice()+"&euro;\n" +
                     "                                    </a>\n" +
                     "                                </footer>\n" +
                     "                            </div>\n" +
@@ -60,7 +60,7 @@ public class JSPConnector {
                     "                        <div class=\"card has-text-centered\">\n" +
                     "                            <div class=\"card-image\">\n" +
                     "                                <a href=\"categories.jsp?category="+entry.getKey()+"\"><img\n" +
-                    "                                        src=\""+db.getBooks().get(entry.getValue().getBooks().get(0)).getImage_url()+"\"\n" +
+                    "                                        src=\""+entry.getValue().getFirstBookURL()+"\"\n" +
                     "                                        width=\"200\" height=\"200\"></a>\n" +
                     "                            </div>\n" +
                     "                            <div class=\"card-content\"><a href=\"categories.jsp?category="+entry.getKey()+"\"\n" +

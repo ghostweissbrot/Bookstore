@@ -36,8 +36,8 @@
                      style="width:200%" alt="Bulma logo" href="index.html">
             </a>
             <a href="/" class="nav-item is-tab is-hidden-mobile">Startseite</a>
-            <a href="categories.html" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
-            <a href="stoebern.html" class="nav-item is-tab is-hidden-mobile">St&ouml;bern</a>
+            <a href="categories" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
+            <a href="/stoebern.html" class="nav-item is-tab is-hidden-mobile">St&ouml;bern</a>
         </div>
         <span class="nav-toggle">
 		      <span></span>

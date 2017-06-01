@@ -8,13 +8,11 @@ import java.util.Map;
 public class Category {
 
     private String name;
-    private String shortcut;
-    private ArrayList<String> books;
+    private Map<String, Book> books;
 
     public Category(String name) {
         setName(name);
-        setShortcut(name);
-        books = new ArrayList<String>();
+        books = new HashMap<String, Book>();
     }
 
     public String getName() {
@@ -25,25 +23,27 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getBooks() {
+    public Map<String, Book> getBooks() {
         return books;
     }
 
-    public void setBooks(ArrayList<String> books) {
+    public void addBook(Book book) {
+        this.books.put(book.getIsbn(), book);
+    }
+
+    public void removeBook(String isbn) {
+        books.remove(isbn);
+    }
+
+    public void setBooks(Map<String, Book> books) {
         this.books = books;
     }
 
-    public String getShortcut() {
-        return shortcut;
+    public boolean containsBook(String isbn) {
+        return books.containsKey(isbn);
     }
 
-    public void setShortcut(String shortcut) {
-        this.shortcut = shortcut;
-    }
-
-    public void removeBook(String name) {
-        if(books.contains(name)) {
-            books.remove(name);
-        }
+    public String getFirstBookURL() {
+        return books.entrySet().iterator().next().getValue().getImage_url();
     }
 }

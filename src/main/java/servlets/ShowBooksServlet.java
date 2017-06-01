@@ -1,6 +1,7 @@
 package servlets;
 
 import backend.Book;
+import backend.Category;
 import backend.Database;
 
 import javax.servlet.http.HttpServlet;
@@ -23,9 +24,9 @@ public class ShowBooksServlet extends HttpServlet {
 
         database = Database.getInstance();
 
-        Map<String, Book> books = database.getBooks();
-        Iterator iterator = books.entrySet().iterator();
-        Book temp;
+       // Map<String, Category> categorys = database.getCategorys();
+        Iterator iterator = database.getCategorys().entrySet().iterator();
+        Category tempCategory;
 
         printWriter.print("<html>\n" +
                 "    <head>\n" +
@@ -49,18 +50,24 @@ public class ShowBooksServlet extends HttpServlet {
 
         while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry)iterator.next();
-            temp = (Book) pair.getValue();
-            printWriter.print("<tr>"
-                +"<td> " + temp.getIsbn() + " </td>"
-                +"<td><img src=\"" + temp.getImage_url() + "\" width=\"50\" height=\"70\">" + " </td>"
-                +"<td> " + temp.getTitle() + " </td>"
-                +"<td> " + temp.getAuthor() + " </td>"
-                +"<td> " + temp.getPublisher() + " </td>"
-                +"<td> " + temp.getCategory() + " </td>"
-                +"<td> " + temp.getReleasedate() + " </td>"
-                +"<td> " + temp.getPrice() + "&euro; </td>"
-                +"<td> " + temp.getDescription() + " </td>"
-                +"</tr>");
+            tempCategory = (Category) pair.getValue();
+            Iterator iterator1 = tempCategory.getBooks().entrySet().iterator();
+
+            Book temp;
+            while(iterator1.hasNext()) {
+                temp = (Book) iterator1.next();
+                printWriter.print("<tr>"
+                        +"<td> " + temp.getIsbn() + " </td>"
+                        +"<td><img src=\"" + temp.getImage_url() + "\" width=\"50\" height=\"70\">" + " </td>"
+                        +"<td> " + temp.getTitle() + " </td>"
+                        +"<td> " + temp.getAuthor() + " </td>"
+                        +"<td> " + temp.getPublisher() + " </td>"
+                        +"<td> " + temp.getCategory() + " </td>"
+                        +"<td> " + temp.getReleasedate() + " </td>"
+                        +"<td> " + temp.getPrice() + "&euro; </td>"
+                        +"<td> " + temp.getDescription() + " </td>"
+                        +"</tr>");
+            }
         }
 
         printWriter.print("</table>\n" +
