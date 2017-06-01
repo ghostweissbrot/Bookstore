@@ -11,9 +11,9 @@ public class Category {
     private String shortcut;
     private ArrayList<String> books;
 
-    public Category(String name, String shortcut) {
+    public Category(String name) {
         setName(name);
-        setShortcut(shortcut);
+        setShortcut(name);
         books = new ArrayList<String>();
     }
 
@@ -39,5 +39,11 @@ public class Category {
 
     public void setShortcut(String shortcut) {
         this.shortcut = shortcut;
+    }
+
+    public void removeBook(String name) {
+        if(books.contains(name)) {
+            books.remove(name);
+        }
     }
 }

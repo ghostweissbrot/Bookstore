@@ -25,24 +25,24 @@ public class RemoveCategoryServlet extends HttpServlet {
         printWriter.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "    <head>\n" +
-                "        <title>Hinzufügen</title>\n" +
+                "        <title>Kategorie entfernen</title>\n" +
                 "        <meta charset=\"UTF-8\">\n" +
                 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    </head>\n" +
                 "    <body>\n" +
                 "        <form method=\"post\" >\n" +
-                "            <h4>Kategorie hinzufügen</h4>\n" +
+                "            <h4>Kategorie entfernen</h4>\n" +
                 "\n" +
                 "            <table>\n" +
                 "                <tr>\n" +
                 "                    <td>\n" +
-                "                      <span style=\"width:110px; display: inline-block;\">Kuerzel:</span><input type=\"shortcut\" name=\"shortcut\" required/>\n" +
+                "                      <span style=\"width:110px; display: inline-block;\">Name:</span><input type=\"name\" name=\"name\" required/>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
                 "                <br>\n" +
                 "                <br>\n" +
                 "            </table>\n" +
-                "            <input type='submit' value='Hinzuf&uuml;gen'/>\n" +
+                "            <input type='submit' value='Entfernen'/>\n" +
                 "        </form>\n" +
                 "\n" +
                 "\n" +
@@ -56,10 +56,10 @@ public class RemoveCategoryServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
 
         try {
-            String shortcut = request.getParameter("shortcut");
+            String name = request.getParameter("name");
 
             database = Database.getInstance();
-            database.removeCategory(shortcut);
+            database.removeCategory(name);
             database.save();
 
             response.sendRedirect("/categories");

@@ -1,6 +1,7 @@
 <%@ page import="backend.Database" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="backend.Category" %><%--
+<%@ page import="backend.Category" %>
+<%@ page import="backend.JSPConnector" %><%--
   Created by IntelliJ IDEA.
   User: smint
   Date: 31.05.17
@@ -24,17 +25,17 @@
 
 <%
     Database db = Database.getInstance();
-
+    db.load();
 %>
 
 <nav class="nav has-shadow">
     <div class="container">
         <div class="nav-left">
-            <a class="nav-item" href="index.html">
+            <a class="nav-item" href="/">
                 <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
                      style="width:200%" alt="Bulma logo" href="index.html">
             </a>
-            <a href="index.html" class="nav-item is-tab is-hidden-mobile">Startseite</a>
+            <a href="/" class="nav-item is-tab is-hidden-mobile">Startseite</a>
             <a href="categories.html" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
             <a href="stoebern.html" class="nav-item is-tab is-hidden-mobile">St&ouml;bern</a>
         </div>
@@ -73,7 +74,8 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
-                Kategorien
+                <%= request.getParameter("category") != null ? request.getParameter("category")
+                        : "Kategorien"%>
             </h1>
         </div>
     </div>
@@ -97,7 +99,7 @@
                 <ul class="menu-list">
                     <%
                         for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
-                    <li><a href="<%=entry.getKey()%>.html"><%=entry.getValue().getName()%>
+                    <li><a href="categories.jsp?category=<%=entry.getKey()%>"><%=entry.getValue().getName()%>
                     </a></li>
                     <%}%>
                 </ul>
@@ -107,21 +109,8 @@
             <div class="container is-fluid">
                 <div class="column"></div>
                 <div class="columns is-multiline">
-                    <% for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
-                    <div class="column is-2">
-                        <div class="card has-text-centered">
-                            <div class="card-image">
-                                <a href="<%=entry.getKey()%>"><img
-                                        src="<%=db.getBooks().get(entry.getValue().getBooks().get(0)).getImage_url()%>"
-                                        width="200" height="200"></a>
-                            </div>
-                            <div class="card-content"><a href="<%=entry.getKey()%>.html"
-                                                         class="title"><%=entry.getValue().getName()%>
-                            </a></div>
-                        </div>
-                    </div>
-                    <%}%>
-
+                    <%= request.getParameter("category") != null ? JSPConnector.getBooklist(request.getParameter("category"))
+                    : JSPConnector.getCategoryList()%>
                 </div>
             </div>
         </div>

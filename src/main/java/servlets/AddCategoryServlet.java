@@ -27,7 +27,7 @@ public class AddCategoryServlet extends HttpServlet {
         printWriter.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "    <head>\n" +
-                "        <title>Hinzufügen</title>\n" +
+                "        <title>Kategorie hinzufügen</title>\n" +
                 "        <meta charset=\"UTF-8\">\n" +
                 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    </head>\n" +
@@ -41,12 +41,6 @@ public class AddCategoryServlet extends HttpServlet {
                 "                      <span style=\"width:110px; display: inline-block;\">Name:</span><input type=\"name\" name=\"name\" required/>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
-                "                <tr>\n" +
-                "                    <td>\n" +
-                "                      <span style=\"width:110px; display: inline-block;\">Kuerzel:</span><input type=\"shortcut\" name=\"shortcut\" required/>\n" +
-                "                    </td>\n" +
-                "                </tr>\n" +
-                "                <br>\n" +
                 "                <br>\n" +
                 "            </table>\n" +
                 "            <input type='submit' value='Hinzuf&uuml;gen'/>\n" +
@@ -64,10 +58,9 @@ public class AddCategoryServlet extends HttpServlet {
 
         try {
             String name = request.getParameter("name");
-            String shortcut = request.getParameter("shortcut");
 
             database = Database.getInstance();
-            database.addCategory(name, shortcut);
+            database.addCategory(name);
             database.save();
 
             response.sendRedirect("/categories");

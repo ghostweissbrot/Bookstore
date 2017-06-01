@@ -43,6 +43,26 @@
         <servlet-name>addBook</servlet-name>
         <url-pattern>/addBook</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>removeBook</servlet-name>
+        <servlet-class>servlets.RemoveBookServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>removeBook</servlet-name>
+        <url-pattern>/removeBook</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>showBooksServlet</servlet-name>
+        <servlet-class>servlets.ShowBooksServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>showBooksServlet</servlet-name>
+        <url-pattern>/listBooks</url-pattern>
+    </servlet-mapping>
 
 </web-app>
 

@@ -25,7 +25,7 @@ public class AddBookServlet extends HttpServlet {
         printWriter.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "    <head>\n" +
-                "        <title>Hinzufügen</title>\n" +
+                "        <title>Buch hinzufügen</title>\n" +
                 "        <meta charset=\"UTF-8\">\n" +
                 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    </head>\n" +
