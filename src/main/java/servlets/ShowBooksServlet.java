@@ -25,9 +25,6 @@ public class ShowBooksServlet extends HttpServlet {
         database = Database.getInstance();
 
        // Map<String, Category> categorys = database.getCategorys();
-        Iterator iterator = database.getCategorys().entrySet().iterator();
-        Category tempCategory;
-
         printWriter.print("<html>\n" +
                 "    <head>\n" +
                 "        <title>Ansicht</title>\n" +
@@ -48,24 +45,20 @@ public class ShowBooksServlet extends HttpServlet {
                 "                <th>Beschreibung</th>\n" +
                 "            </tr>\n");
 
-        while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry)iterator.next();
-            tempCategory = (Category) pair.getValue();
-            Iterator iterator1 = tempCategory.getBooks().entrySet().iterator();
+        for(Map.Entry<String, Category> categoryEntry : database.getCategorys().entrySet()) {
 
-            Book temp;
-            while(iterator1.hasNext()) {
-                temp = (Book) iterator1.next();
+            for(Map.Entry<String, Book> bookEntry : categoryEntry.getValue().getBooks().entrySet()) {
+                Book tempBook = bookEntry.getValue();
                 printWriter.print("<tr>"
-                        +"<td> " + temp.getIsbn() + " </td>"
-                        +"<td><img src=\"" + temp.getImage_url() + "\" width=\"50\" height=\"70\">" + " </td>"
-                        +"<td> " + temp.getTitle() + " </td>"
-                        +"<td> " + temp.getAuthor() + " </td>"
-                        +"<td> " + temp.getPublisher() + " </td>"
-                        +"<td> " + temp.getCategory() + " </td>"
-                        +"<td> " + temp.getReleasedate() + " </td>"
-                        +"<td> " + temp.getPrice() + "&euro; </td>"
-                        +"<td> " + temp.getDescription() + " </td>"
+                        +"<td> " + tempBook.getIsbn() + " </td>"
+                        +"<td><img src=\"" + tempBook.getImage_url() + "\" width=\"50\" height=\"70\">" + " </td>"
+                        +"<td> " + tempBook.getTitle() + " </td>"
+                        +"<td> " + tempBook.getAuthor() + " </td>"
+                        +"<td> " + tempBook.getPublisher() + " </td>"
+                        +"<td> " + tempBook.getCategory() + " </td>"
+                        +"<td> " + tempBook.getReleasedate() + " </td>"
+                        +"<td> " + tempBook.getPrice() + "&euro; </td>"
+                        +"<td> " + tempBook.getDescription() + " </td>"
                         +"</tr>");
             }
         }
