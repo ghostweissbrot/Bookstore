@@ -121,7 +121,7 @@ public class AddBookServlet extends HttpServlet {
             database.addBook(book);
             database.save();
 
-            response.sendRedirect("/");
+            response.sendRedirect("/categories?category="+category);
             //printWriter.print(database.getKvs().get(key));
 
         } catch(Exception e) {

@@ -11,12 +11,11 @@ public class JSPConnector {
         Database db = Database.getInstance();
         StringBuilder stb = new StringBuilder();
         if(db.getCategorys().get(category) == null) {
-         return "error";
+            return "error";
         }
 
         if(db.getCategorys().get(category).getBooks().size() < 1) {
-            stb.append("Keine Bücher vorhanden.");
-            return stb.toString();
+            return "Keine Bücher vorhanden.";
         }
 
         for(Map.Entry<String, Book> entry : db.getCategorys().get(category).getBooks().entrySet()) {

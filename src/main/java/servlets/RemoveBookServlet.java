@@ -20,7 +20,6 @@ public class RemoveBookServlet extends HttpServlet {
 
         PrintWriter printWriter = response.getWriter();
 
-        //insert HTML-File here
         printWriter.println("<html>\n" +
                 "    <head>\n" +
                 "        <title>L&ouml;schen</title>\n" +
@@ -49,7 +48,6 @@ public class RemoveBookServlet extends HttpServlet {
                 database.removeBook(isbn);
                 database.save();
                 response.sendRedirect("/listBooks");
-                //printWriter.println("Buch mit ISBN " + isbn + " erflogreich gel&ouml;scht: " + database.getKvs().get(key));
             } else {
                 printWriter.println("Book not present.");
             }
