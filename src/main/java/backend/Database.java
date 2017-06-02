@@ -61,10 +61,12 @@ public class Database {
     }
 
     public void addBook(Book book) {
+        load();
         if(!categorys.containsKey(book.getCategory())) {
             categorys.put(book.getCategory(), new Category(book.getCategory()));
         }
         categorys.get(book.getCategory()).addBook(book);
+        save();
     }
 
     public void save() {
@@ -85,9 +87,11 @@ public class Database {
     }
 
     public void addCategory(String name) {
+        load();
         if(!categorys.containsKey(name)) {
             categorys.put(name, new Category(name));
         }
+        save();
     }
 
     public void removeCategory(String name) {

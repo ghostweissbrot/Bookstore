@@ -97,10 +97,9 @@
                     <a href="categories.html">Kategorien</a>
                 </p>
                 <ul class="menu-list">
-                    <%
-                        for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
-                    <li><a href="categories.jsp?category=<%=entry.getKey()%>"><%=entry.getValue().getName()%>
-                    </a></li>
+                    <%for (Map.Entry<String, Category> entry : db.getCategorys().entrySet()) {%>
+                        <li><a href="categories.jsp?category=<%=entry.getKey()%>"><%=entry.getValue().getName()%>
+                        </a></li>
                     <%}%>
                 </ul>
             </aside>
