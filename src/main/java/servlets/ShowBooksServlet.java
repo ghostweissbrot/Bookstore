@@ -23,6 +23,7 @@ public class ShowBooksServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
 
         database = Database.getInstance();
+        database.load();
 
        // Map<String, Category> categorys = database.getCategorys();
         printWriter.print("<html>\n" +
