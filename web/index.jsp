@@ -23,11 +23,11 @@
 <nav class="nav has-shadow">
     <div class="container">
         <div class="nav-left">
-            <a class="nav-item" href="index.html">
+            <a class="nav-item" href="/">
                 <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
-                     style="width:200%" alt="Bulma logo">
+                     alt="Bulma logo">
             </a>
-            <a href="index.html" class="nav-item is-tab is-hidden-mobile is-active">Startseite</a>
+            <a href="/" class="nav-item is-tab is-hidden-mobile is-active">Startseite</a>
             <a href="categories" class="nav-item is-tab is-hidden-mobile">Kategorien</a>
             <a href="stoebern.html" class="nav-item is-tab is-hidden-mobile">St&ouml;bern</a>
         </div>
@@ -36,7 +36,7 @@
 		      <span></span>
 		      <span></span>
 		    </span>
-        <div class="nav-right nav-menu">F
+        <div class="nav-right nav-menu">
             <a class="nav-item is-tab is-hidden-tablet is-active">Startseite</a>
             <a class="nav-item is-tab is-hidden-tablet">Kategorien</a>
             <a class="nav-item is-tab is-hidden-tablet">St&ouml;</a>

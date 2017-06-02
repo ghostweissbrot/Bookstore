@@ -33,7 +33,7 @@
         <div class="nav-left">
             <a class="nav-item" href="/">
                 <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
-                     style="width:200%" alt="Bulma logo" href="index.html">
+                     alt="Bulma logo" href="index.html">
             </a>
             <a href="/" class="nav-item is-tab is-hidden-mobile">Startseite</a>
             <a href="categories" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
