@@ -1,5 +1,8 @@
 package backend;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +10,11 @@ import java.util.Map;
 
 public class Category {
 
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("books")
+    @Expose
     private Map<String, Book> books;
 
     public Category(String name) {

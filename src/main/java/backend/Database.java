@@ -5,7 +5,9 @@ import com.google.gson.reflect.TypeToken;
 import de.imut.ec.keyvaluestore.KeyValueStore;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -92,6 +94,10 @@ public class Database {
             categorys.put(name, new Category(name));
         }
         save();
+    }
+
+    public List<Category> getCategoryList() {
+        return new ArrayList<Category>(getCategorys().values());
     }
 
     public void removeCategory(String name) {
