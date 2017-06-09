@@ -111,10 +111,10 @@
                                             </div>
 
                                             <footer class="card-footer">
-                                                <h:commandButton
+                                                <h:commandLink
                                                         styleClass="card-footer-item"
                                                         value="In den Warenkorb #{book.price}€"
-                                                        action="#{shoppingCartBean.addBook(bookDetailBean.currentBook)}"
+                                                        action="#{shoppingCartBean.addBook(book)}"
                                                         style="border-color: transparent"/>
                                             </footer>
                                         </div>

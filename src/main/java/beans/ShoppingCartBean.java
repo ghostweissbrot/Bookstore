@@ -34,14 +34,13 @@ public class ShoppingCartBean {
     }
 
     public String addBook(Book book) {
-        if(basket.contains(book)) {
-            quantities.put(book ,quantities.get(book) + 1);
-        }
-        else {
+        if (basket.contains(book)) {
+            quantities.put(book, quantities.get(book) + 1);
+        } else {
             basket.add(book);
             quantities.put(book, 1);
         }
-        if(book != null) {
+        if (book != null) {
             summary += book.getPrice();
         }
         return "/shoppingcart.xhtml";
@@ -61,15 +60,32 @@ public class ShoppingCartBean {
         return temp;
     }
 
-    public String removeBook(Book book) {
+    public String setQuantity(Book book, int quantity) {
         if(basket.contains(book)) {
-            if(quantities.get(book) == 1) {
+            quantities.put(book, quantity);
+        }
+        return "shoppingcart.xhtml";
+    }
+
+    public String decreaseBook(Book book) {
+        if (basket.contains(book)) {
+            if (quantities.get(book) == 1) {
                 basket.remove(book);
                 quantities.remove(book);
             } else {
-                quantities.put(book ,quantities.get(book) - 1);
+                quantities.put(book, quantities.get(book) - 1);
             }
             summary -= book.getPrice();
+        }
+        return "shoppingcart.xhtml";
+    }
+
+    public String removeBook(Book book) {
+        if (basket.contains(book)) {
+            basket.remove(book);
+            if (quantities.containsKey(book)) {
+                quantities.remove(book);
+            }
         }
         return "shoppingcart.xhtml";
     }
