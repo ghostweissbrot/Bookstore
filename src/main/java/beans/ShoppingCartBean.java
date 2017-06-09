@@ -92,7 +92,7 @@ public class ShoppingCartBean {
     public String removeBook(Book book) {
         if (basket.contains(book)) {
             basket.remove(book);
-            summary -= (double) quantities.get(book) * book.getPrice();
+            summary -= (double) quantities.get(book) * book.getPrice(); //TODO fix
         }
         return "shoppingcart.xhtml";
     }

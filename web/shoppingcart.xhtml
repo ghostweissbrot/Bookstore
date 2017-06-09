@@ -90,7 +90,10 @@
                         <ui:repeat value="#{shoppingCartBean.basket}" var="book">
                             <tr>
                                 <th>#{book.isbn}</th>
-                                <td><a href="">#{book.title}</a>
+                                <td>
+                                    <h:commandLink action="#{bookDetailBean.changeBook(book)}">
+                                        #{book.title}
+                                    </h:commandLink>
                                 </td>
                                 <td>
                                     <div class="field">
@@ -107,7 +110,7 @@
                                         </p>
                                     </div>
                                 </td>
-                                <td>#{book.price}&euro;</td>
+                                <td>#{book.price} €</td>
                                 <td>
                                     <h:commandButton
                                             styleClass="button is-small is-danger is-outlined"
@@ -126,7 +129,7 @@
                     <div class="card-content">
                         <div class="content">
                             Hier finden Sie die Zusammenfassung ihres Einkaufs.
-                            Im folgenden Schritt k&ouml;nnen Sie ihr Zahlungsmittel ausw&auml;hlen.
+                            Im folgenden Schritt können Sie ihr Zahlungsmittel auswählen.
                             <br></br>
                         </div>
                         <table class="table is-narrow">
