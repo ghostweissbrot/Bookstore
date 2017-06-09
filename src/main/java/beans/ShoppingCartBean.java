@@ -76,7 +76,7 @@ public class ShoppingCartBean {
         return "shoppingcart.xhtml";
     }
 
-    public String decreaseBook(Book book) {
+    public String decreaseQuantity(Book book) {
         if (basket.contains(book)) {
             if (quantities.get(book) == 1) {
                 basket.remove(book);
