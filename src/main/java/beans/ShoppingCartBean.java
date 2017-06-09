@@ -4,6 +4,8 @@ import backend.Book;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,16 +22,13 @@ public class ShoppingCartBean {
 
     private List<Book> basket = new ArrayList<Book>();
     private Map<Book, Integer> quantities = new HashMap<Book, Integer>();
-    private double summary = 0;
+    private double summary = 0.0;
 
     public List<Book> getBasket() {
         return basket;
     }
 
     public double getSummary() {
-        summary *= 100;
-        int temp = (int) summary;
-        summary = (double) temp / 100.0;
         return summary;
     }
 
@@ -85,15 +84,29 @@ public class ShoppingCartBean {
                 quantities.put(book, quantities.get(book) - 1);
             }
             summary -= book.getPrice();
+            summary = round(summary,2);
         }
+        summary = round(summary,2);
         return "shoppingcart.xhtml";
     }
 
     public String removeBook(Book book) {
         if (basket.contains(book)) {
             basket.remove(book);
-            summary -= (double) quantities.get(book) * book.getPrice(); //TODO fix
+            summary -= ((double) quantities.get(book)) * book.getPrice(); //TODO fix
         }
+        if(basket.isEmpty()) {
+            summary = 0.0;
+        }
+        summary = round(summary,2);
         return "shoppingcart.xhtml";
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
