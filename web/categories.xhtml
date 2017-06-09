@@ -3,10 +3,10 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Kategorien</title>
+    <title>#{categoryListBean.currentCategory.name}</title>
 </h:head>
 
 <h:body>
@@ -15,104 +15,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 
-    <nav class="nav has-shadow">
-        <div class="container">
-            <div class="nav-left">
-                <a class="nav-item" href="/">
-                    <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
-                         alt="Bulma logo" href="index.html"/>
-                </a>
-                <a href="/" class="nav-item is-tab is-hidden-mobile">Startseite</a>
-                <a href="categories" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
-                <a href="/stoebern.html" class="nav-item is-tab is-hidden-mobile">St&ouml;bern</a>
-            </div>
-            <span class="nav-toggle">
+    <h:form>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a class="nav-item" href="/">
+                        <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
+                             alt="Bulma logo" href="index.html"/>
+                    </a>
+                    <a href="/index.jsf" class="nav-item is-tab is-hidden-mobile">Startseite</a>
+                    <a href="/categories.jsf" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
+                </div>
+                <span class="nav-toggle">
 		      <span></span>
 		      <span></span>
 		      <span></span>
 		    </span>
-            <div class="nav-right nav-menu">
-                <a class="nav-item is-tab is-hidden-tablet">Startseite</a>
-                <a class="nav-item is-tab is-hidden-tablet is-active">Kategorien</a>
-                <a class="nav-item is-tab is-hidden-tablet">Angebote</a>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet">Startseite</a>
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Kategorien</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Angebote</a>
 
-                <p class="nav-item is-tab has-icon">
-                    <input class="input" type="text" placeholder="Suche nach.."/>
-                    <a href="stoebern.html">
-                        <button class="button">
-                            Suche
-                        </button>
+                    <p class="nav-item is-tab has-icon">
+                        <input class="input" type="text" placeholder="Suche nach.."/>
+                        <a href="stoebern.html">
+                            <button class="button">
+                                Suche
+                            </button>
+                        </a>
+                    </p>
+
+
+                    <a class="nav-item is-tab" href="shoppingcart.html">
+                        <figure class="image is-16x16" style="margin-right: 8px;">
+                            <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
+                        </figure>
+                        Warenkorb
                     </a>
-                </p>
-
-
-                <a class="nav-item is-tab" href="shoppingcart.html">
-                    <figure class="image is-16x16" style="margin-right: 8px;">
-                        <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
-                    </figure>
-                    Warenkorb
-                </a>
-                <!-- <a class="nav-item is-tab">Log out</a> -->
+                    <!-- <a class="nav-item is-tab">Log out</a> -->
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-
-                </h1>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        #{categoryListBean.currentCategory.name}
+                    </h1>
+                </div>
             </div>
-        </div>
-    </section>
-    <h1></h1>
-    <div class="container is-fluid">
-        <div class="columns">
-            <div class="column is-2">
-                <aside class="menu">
-                    <p class="menu-label">
-                        St&Ouml;bern
-                    </p>
-                    <ul class="menu-list">
-                        <li><a href="stoebern.html">&Uuml;bersicht</a></li>
-                        <li><a>Bestseller</a></li>
-                        <li><a>Neu</a></li>
-                    </ul>
-                    <p class="menu-label">
-                        <a href="categories.html">Kategorien</a>
-                    </p>
-                    <ul class="menu-list">
-                        <ui:repeat value="#{categoryListBean.categories}" var="category">
+        </section>
+        <h1></h1>
+        <div class="container is-fluid">
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">
+                            St&Ouml;bern
+                        </p>
+                        <ul class="menu-list">
+                            <li><a href="stoebern.html">&Uuml;bersicht</a></li>
+                            <li><a>Bestseller</a></li>
+                            <li><a>Neu</a></li>
+                        </ul>
+                        <p class="menu-label">
+                            <a href="categories.jsf">Kategorien</a>
+                        </p>
+                        <ul class="menu-list">
+                            <ui:repeat value="#{categoryListBean.categories}" var="category">
+                                <h:commandLink
+                                        value="#{category.name}"
+                                        action="#{categoryListBean.changeCategory(category)}"
+                                        styleClass="panel-block"
+                                        style="border-color: transparent"/>
+                            </ui:repeat>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column">
+                    <div class="container is-fluid">
+                        <div class="column"></div>
+                        <div class="columns is-multiline">
+                            #{bookListBean.changeCategory(categoryListBean.currentCategory)}
+                            <ui:repeat value="#{bookListBean.books}" var="book">
+                                <div class="column is-2">
+                                    <h:commandLink action="#{bookDetailBean.changeBook(book)}">
+                                        <div class="card has-text-centered">
+                                            <div class="card-image">
+                                                <img src="#{book.image_url}"/>
+                                            </div>
+                                            <div class="card-content">
+                                                <p class="title is-4">#{book.title}</p>
+                                                <p class="subtitle is-6">#{book.author}</p>
+                                            </div>
 
-                            <li><a href="categories.jsp?category=">#{category.name}</a></li>
-
-                        </ui:repeat>
-                    </ul>
-                </aside>
-            </div>
-            <div class="column">
-                <div class="container is-fluid">
-                    <div class="column"></div>
-                    <div class="columns is-multiline">
-                        <ui:repeat value="#{categoryListBean.categories}" var="category">
-                            <div class="column is-2">
-                                <div class="card has-text-centered">
-                                    <div class="card-image">
-                                        <a href="">
-                                            <img src="#{category.firstBookURL}"/>
-                                        </a>
-                                    </div>
-                                    <div class="card-content"><a href="" class="title">#{category.name}</a></div>
+                                            <footer class="card-footer">
+                                                <a href="shoppingcart.html" class="card-footer-item">
+                                                    <!--
+                                                     <figure class="image is-16x16" style="margin-right: 8px;">
+                                                         <img src="http://www.kingbutton.de/generator/images/warenkorb.png"
+                                                              height="60"
+                                                              width="60">
+                                                     </figure>
+                                                     -->
+                                                    In den Warenkorb - #{book.price}&euro;
+                                                </a>
+                                            </footer>
+                                        </div>
+                                    </h:commandLink>
                                 </div>
-                            </div>
-                        </ui:repeat>
+                            </ui:repeat>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </h:form>
 </h:body>
 
 </html>

@@ -16,13 +16,22 @@ import java.util.List;
 @SessionScoped
 public class CategoryListBean {
 
-    private DataModel<Category> categories;
+    private List<Category> categories = Database.getInstance().getCategoryList();
     private Category currentCategory;
 
+    public String changeCategory(Category category) {
+        currentCategory = category;
+        return "/categories.xhtml";
+    }
+
     public List<Category> getCategories() {
-        categories = new ListDataModel<Category>();
-        List<Category> categoriesList = Database.getInstance().getCategoryList();
-        categories.setWrappedData(categoriesList);
-        return categoriesList;
+        return categories;
+    }
+
+    public Category getCurrentCategory() {
+        if(currentCategory == null) {
+            currentCategory = categories.get(0);
+        }
+        return currentCategory;
     }
 }
