@@ -40,9 +40,18 @@ public class ShoppingCartBean {
             basket.add(book);
             quantities.put(book, 1);
         }
-        if (book != null) {
-            summary += book.getPrice();
+        summary += book.getPrice();
+        return "/shoppingcart.xhtml";
+    }
+
+    public String addBook(Book book, int quantity) {
+        if (basket.contains(book)) {
+            quantities.put(book, quantities.get(book) + quantity);
+        } else {
+            basket.add(book);
+            quantities.put(book, quantity);
         }
+        summary += book.getPrice();
         return "/shoppingcart.xhtml";
     }
 
@@ -61,7 +70,7 @@ public class ShoppingCartBean {
     }
 
     public String setQuantity(Book book, int quantity) {
-        if(basket.contains(book)) {
+        if (basket.contains(book)) {
             quantities.put(book, quantity);
         }
         return "shoppingcart.xhtml";
@@ -83,9 +92,7 @@ public class ShoppingCartBean {
     public String removeBook(Book book) {
         if (basket.contains(book)) {
             basket.remove(book);
-            if (quantities.containsKey(book)) {
-                quantities.remove(book);
-            }
+            summary -= (double) quantities.get(book) * book.getPrice();
         }
         return "shoppingcart.xhtml";
     }
