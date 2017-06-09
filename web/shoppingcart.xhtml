@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+    <title>Warenkorb</title>
+</head>
+
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<h:form>
+    <nav class="nav has-shadow">
+        <div class="container">
+            <div class="nav-left">
+                <a class="nav-item" href="/index.jsf">
+                    <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
+                         alt="Bulma logo" href="index.jsf"/>
+                </a>
+                <a href="index.jsf" class="nav-item is-tab is-hidden-mobile">Startseite</a>
+                <a href="categories.jsf" class="nav-item is-tab is-hidden-mobile">Kategorien</a>
+            </div>
+            <span class="nav-toggle">
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		    </span>
+            <div class="nav-right nav-menu">
+                <a class="nav-item is-tab is-hidden-tablet">Startseite</a>
+                <a class="nav-item is-tab is-hidden-tablet">Kategorien</a>
+                <a class="nav-item is-tab is-hidden-tablet">Angebote</a>
+
+                <p class="nav-item is-tab has-icon">
+                    <input class="input" type="text" placeholder="Suche nach.."/>
+                    <a href="stoebern.html">
+                        <button class="button">
+                            Suche
+                        </button>
+                    </a>
+                </p>
+
+
+                <a class="nav-item is-tab is-active">
+                    <figure class="image is-16x16" style="margin-right: 8px;">
+                        <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
+                    </figure>
+                    Warenkorb
+                </a>
+                <!-- <a class="nav-item is-tab">Log in</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Warenkorb
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-8">
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><abbr title="Artikelnummer">ISBN</abbr></th>
+                            <th>Name</th>
+                            <th>Anzahl</th>
+                            <th>Preis</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <ui:repeat value="#{shoppingCartBean.basket}" var="book">
+                            <tr>
+                                <th>#{book.isbn}</th>
+                                <td><a href="">#{book.title}</a>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <p class="control">
+                                            <span class="select is-small">
+                                              <select>
+                                                <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                  <option>4</option>
+                                                  <option>5</option>
+                                              </select>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>#{book.price}&euro;</td>
+                                <td>
+                                    <h:commandButton
+                                            styleClass="button is-small is-danger is-outlined"
+                                            value="X"
+                                            action="#{shoppingCartBean.removeBook(book)}"
+                                    />
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            Hier finden Sie die Zusammenfassung ihres Einkaufs.
+                            Im folgenden Schritt k&ouml;nnen Sie ihr Zahlungsmittel ausw&auml;hlen.
+                            <br></br>
+                        </div>
+                        <table class="table is-narrow">
+                            <thead>
+                            <tr>
+                                <th>Zusammenfassung</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            </thead>
+
+                            <tr>
+                                <td>Artikel:</td>
+                                <td>#{shoppingCartBean.summary} €</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Betrag:</strong></td>
+                                <td><strong>#{shoppingCartBean.summary} €</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <nav class="level">
+                        <div class="level-item has-text-centered">
+                            <a href="checkin.html" class="control">
+                                <button class="button is-primary is-medium">Zur Kasse gehen</button>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:form>
+
+</body>
+
+</html>

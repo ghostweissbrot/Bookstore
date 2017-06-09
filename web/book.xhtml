@@ -19,9 +19,9 @@
         <nav class="nav has-shadow">
             <div class="container">
                 <div class="nav-left">
-                    <a class="nav-item" href="index.html">
+                    <a class="nav-item" href="index.jsf">
                         <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
-                             alt="Bulma logo" href="index.html"/>
+                             alt="Bulma logo" href="index.jsf"/>
                     </a>
                     <a href="/index.jsf" class="nav-item is-tab is-hidden-mobile">Startseite</a>
                     <a href="/categories.jsf" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
@@ -46,7 +46,7 @@
                     </p>
 
 
-                    <a class="nav-item is-tab" href="shoppingcart.html">
+                    <a class="nav-item is-tab" href="shoppingcart.jsf">
                         <figure class="image is-16x16" style="margin-right: 8px;">
                             <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
                         </figure>
@@ -155,16 +155,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Gesamt:</strong></td>
-                                                    <td><strong>12,99&euro;</strong></td>
+                                                    <td><strong>#{bookDetailBean.currentBook.price}&euro;</strong></td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <nav class="level">
                                             <div class="level-item has-text-centered">
-                                                <a href="shoppingcart.html" class="control">
-                                                    <button class="button is-primary is-medium">In den Warenkorb
-                                                    </button>
-                                                </a>
+                                                <h:commandButton
+                                                        styleClass="button is-primary is-medium"
+                                                        value="In den Warenkorb"
+                                                        action="#{shoppingCartBean.addBook(bookDetailBean.currentBook)}"
+                                                        style="border-color: transparent"/>
                                             </div>
                                         </nav>
                                     </div>

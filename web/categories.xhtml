@@ -21,7 +21,7 @@
                 <div class="nav-left">
                     <a class="nav-item" href="/">
                         <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
-                             alt="Bulma logo" href="index.html"/>
+                             alt="Bulma logo" href="index.jsf"/>
                     </a>
                     <a href="/index.jsf" class="nav-item is-tab is-hidden-mobile">Startseite</a>
                     <a href="/categories.jsf" class="nav-item is-tab is-hidden-mobile is-active">Kategorien</a>
@@ -46,7 +46,7 @@
                     </p>
 
 
-                    <a class="nav-item is-tab" href="shoppingcart.html">
+                    <a class="nav-item is-tab" href="shoppingcart.jsf">
                         <figure class="image is-16x16" style="margin-right: 8px;">
                             <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
                         </figure>
@@ -111,16 +111,11 @@
                                             </div>
 
                                             <footer class="card-footer">
-                                                <a href="shoppingcart.html" class="card-footer-item">
-                                                    <!--
-                                                     <figure class="image is-16x16" style="margin-right: 8px;">
-                                                         <img src="http://www.kingbutton.de/generator/images/warenkorb.png"
-                                                              height="60"
-                                                              width="60">
-                                                     </figure>
-                                                     -->
-                                                    In den Warenkorb - #{book.price}&euro;
-                                                </a>
+                                                <h:commandButton
+                                                        styleClass="card-footer-item"
+                                                        value="In den Warenkorb #{book.price}€"
+                                                        action="#{shoppingCartBean.addBook(bookDetailBean.currentBook)}"
+                                                        style="border-color: transparent"/>
                                             </footer>
                                         </div>
                                     </h:commandLink>
