@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 public class BookDetailBean {
 
     private Book currentBook;
+    private int quantity;
 
     public String changeBook(Book book) {
         currentBook = book;
@@ -22,5 +23,13 @@ public class BookDetailBean {
 
     public Book getCurrentBook() {
         return currentBook;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
