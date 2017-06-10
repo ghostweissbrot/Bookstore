@@ -4,6 +4,8 @@ import backend.Book;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIInput;
+import javax.faces.event.ValueChangeEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -70,11 +72,11 @@ public class ShoppingCartBean {
         return temp;
     }
 
-    public String setQuantity(Book book, int quantity) {
+    public void setQuantity(Book book, int quantity) {
         if (basket.contains(book)) {
             quantities.put(book, quantity);
+            updateSummary();
         }
-        return "shoppingcart.xhtml";
     }
 
     public String decreaseQuantity(Book book) {
@@ -92,10 +94,19 @@ public class ShoppingCartBean {
         return "shoppingcart.xhtml";
     }
 
+    private void updateSummary() {
+        double temp = 0;
+        for(Map.Entry<Book, Integer> entry : quantities.entrySet()) {
+            temp += entry.getKey().getPrice() * ((double)entry.getValue());
+        }
+        temp = round(temp);
+        summary = temp;
+    }
+
     public String removeBook(Book book) {
         if (basket.contains(book)) {
             basket.remove(book);
-            summary -= ((double) quantities.get(book)) * book.getPrice(); //TODO fix
+            summary -= ((double) quantities.get(book)) * book.getPrice();
         }
         if(basket.isEmpty()) {
             summary = 0.0;
@@ -123,5 +134,17 @@ public class ShoppingCartBean {
         basket = new ArrayList<Book>();
         quantities = new HashMap<Book, Integer>();
         summary = 0.0;
+    }
+
+    public Map<Book, Integer> getQuantities() {
+        return quantities;
+    }
+
+    public void setQuantities(Map<Book, Integer> quantities) {
+        this.quantities = quantities;
+    }
+
+    public void valueChangeListener(ValueChangeEvent e) {
+        //TODO implement quantity update
     }
 }
