@@ -14,10 +14,11 @@ import javax.faces.bean.SessionScoped;
 public class BookDetailBean {
 
     private Book currentBook;
-    private int quantity;
+    private int quantity = 1;
 
     public String changeBook(Book book) {
         currentBook = book;
+        quantity = 1;
         return "/book.xhtml";
     }
 

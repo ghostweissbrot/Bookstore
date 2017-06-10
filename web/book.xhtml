@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>#{bookDetailBean.currentBook.title}</title>
@@ -134,15 +135,15 @@
                                                     <td>
                                                         <div class="field">
                                                             <p class="control">
-                                                <span class="select is-small">
-                                                  <select>
-                                                    <option>1</option>
-                                                      <option>2</option>
-                                                      <option>3</option>
-                                                      <option>4</option>
-                                                      <option>5</option>
-                                                  </select>
-                                                </span>
+                                                                <div class="field">
+                                                                    <h:selectOneMenu value="#{bookDetailBean.quantity}">
+                                                                        <f:selectItem itemValue="1" itemLabel="1"/>
+                                                                        <f:selectItem itemValue="2" itemLabel="2"/>
+                                                                        <f:selectItem itemValue="3" itemLabel="3"/>
+                                                                        <f:selectItem itemValue="4" itemLabel="4"/>
+                                                                        <f:selectItem itemValue="5" itemLabel="5"/>
+                                                                    </h:selectOneMenu>
+                                                                </div>
                                                             </p>
                                                         </div>
                                                     </td>
@@ -162,7 +163,7 @@
                                                 <h:commandButton
                                                         styleClass="button is-primary is-medium"
                                                         value="In den Warenkorb"
-                                                        action="#{shoppingCartBean.addBook(bookDetailBean.currentBook)}"
+                                                        action="#{shoppingCartBean.addBook(bookDetailBean.currentBook, bookDetailBean.quantity)}"
                                                         style="border-color: transparent"/>
                                             </div>
                                         </nav>

@@ -51,7 +51,7 @@ public class ShoppingCartBean {
             basket.add(book);
             quantities.put(book, quantity);
         }
-        summary += book.getPrice();
+        summary += ((double)quantity) * book.getPrice();
         summary = round(summary);
         return "/shoppingcart.xhtml";
     }
