@@ -62,7 +62,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        Bestellung abschlie&szlig;en
+                        Bestellung abschließen
                     </h1>
                 </div>
             </div>
@@ -79,9 +79,9 @@
                                         <p>
                                             <strong>Versandadresse</strong>
                                             <br></br>
-                                            Max Mustermann<br></br>
-                                            Musterstra&szlig;e 4a<br></br>
-                                            35502 Musterstadt
+                                            #{customerBean.firstname} #{customerBean.lastname}<br></br>
+                                            #{customerBean.street} #{customerBean.number}<br></br>
+                                            #{customerBean.postcode} #{customerBean.location}
                                         </p>
                                     </div>
                                 </div>
@@ -90,8 +90,7 @@
                                         <p>
                                             <strong>Zahlungsmittel</strong>
                                             <br></br>
-                                            Kreditkarte (Visa)<br></br>
-                                            **** **** **** 3534
+                                            #{customerBean.paymentMethod}<br></br>
                                         </p>
                                     </div>
                                 </div>
@@ -134,13 +133,6 @@
                                             #{shoppingCartBean.getQuantity(book)}
                                         </td>
                                         <td>#{book.price} €</td>
-                                        <td>
-                                            <h:commandButton
-                                                    styleClass="button is-small is-danger is-outlined"
-                                                    value="X"
-                                                    action="#{shoppingCartBean.removeBook(book)}"
-                                            />
-                                        </td>
                                     </tr>
                                 </ui:repeat>
                                 </tbody>
@@ -154,26 +146,23 @@
                             <table class="table is-narrow">
                                 <h1></h1>
                                 <td>Artikel:</td>
-                                <td>85,95&euro;</td>
+                                <td>#{shoppingCartBean.summary} €</td>
                                 <tr></tr>
                                 <td>Versandkosten:</td>
-                                <td>5,00&euro;</td>
+                                <td>2 €</td>
                                 <tr>
                                     <td><a class="subtitle is-danger"><strong>Gesamtbetrag:</strong></a></td>
-                                    <td><strong>90,95&euro;</strong></td>
+                                    <td><strong>#{(shoppingCartBean.summary + 2.0)} €</strong></td>
                                 </tr>
                             </table>
                         </div>
-                        <!--
-                        <footer class="card-footer">
-                            <a href="finish.html" class="card-footer-item">Zahlungspflichtig bestellen</a>
-                        </footer>
-                        -->
                         <nav class="level">
                             <div class="level-item has-text-centered">
-                                <a href="finish.html" class="control">
-                                    <button class="button is-primary is-medium">Zahlungspflichtig bestellen</button>
-                                </a>
+                                <h:commandButton
+                                        styleClass="button is-primary is-medium"
+                                        value="Zahlungspflichtig bestellen"
+                                        action="#{shoppingCartBean.finish}"
+                                        style="border-color: transparent"/>
                             </div>
 
                         </nav>

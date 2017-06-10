@@ -114,7 +114,7 @@ public class CustomerBean {
         this.checksum = checksum;
     }
 
-    public void save() {
+    public String save() {
         Customer c = new Customer();
         c.setFirstname(firstname);
         c.setLastname(lastname);
@@ -128,5 +128,6 @@ public class CustomerBean {
         c.setCreditCardNumber(creditCardNumber);
         c.setChecksum(checksum);
         Database.getInstance().addCustomer(c);
+        return "/checkout.jsf";
     }
 }

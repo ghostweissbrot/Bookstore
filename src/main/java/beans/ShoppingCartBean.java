@@ -112,4 +112,16 @@ public class ShoppingCartBean {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+
+    public String finish() {
+        //TODO save order details in KVS
+        reset();
+        return "/finish.jsf";
+    }
+
+    public void reset() {
+        basket = new ArrayList<Book>();
+        quantities = new HashMap<Book, Integer>();
+        summary = 0.0;
+    }
 }
