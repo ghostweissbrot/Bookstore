@@ -60,7 +60,7 @@ public class RemoveCategoryServlet extends HttpServlet {
 
             database = Database.getInstance();
             database.removeCategory(name);
-            database.save();
+            database.saveCategorys();
 
             response.sendRedirect("/categories");
 

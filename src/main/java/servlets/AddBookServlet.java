@@ -119,7 +119,7 @@ public class AddBookServlet extends HttpServlet {
 
             database = Database.getInstance();
             database.addBook(book);
-            database.save();
+            database.saveCategorys();
 
             response.sendRedirect("/categories?category="+category);
             //printWriter.print(database.getKvs().get(key));

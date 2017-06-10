@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -23,7 +22,7 @@ public class ShowBooksServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
 
         database = Database.getInstance();
-        database.load();
+        database.loadCategorys();
 
        // Map<String, Category> categorys = database.getCategorys();
         printWriter.print("<html>\n" +

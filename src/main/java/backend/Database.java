@@ -20,18 +20,24 @@ public class Database {
 
     private KeyValueStore kvs;
     private Map<String, Category> categorys;
+    private Map<String, Customer> customers;
+
     private Gson gson;
 
     private String categorysJSON;
+    private String customersJSON;
 
     private static final String categorysKey= "rFmN7V4NVROK29doJcAsOos6T4OVXtiqup7DF5ui";
+    private static final String customersKey= "si51I7duWBzNK3XUhB2LXBAsK8y25XriIZH6dgmx";
 
     private Database() {
         gson = new Gson();
         categorysJSON="";
         kvs = new KeyValueStore();
         categorys = new HashMap<String, Category>();
-        load();
+        customers = new HashMap<String, Customer>();
+        loadCategorys();
+        loadCustomers();
     }
 
     public static Database getInstance() {
@@ -63,24 +69,37 @@ public class Database {
     }
 
     public void addBook(Book book) {
-        load();
+        loadCategorys();
         if(!categorys.containsKey(book.getCategory())) {
             categorys.put(book.getCategory(), new Category(book.getCategory()));
         }
         categorys.get(book.getCategory()).addBook(book);
-        save();
+        saveCategorys();
     }
 
-    public void save() {
+    public void saveCategorys() {
         categorysJSON = gson.toJson(categorys);
         kvs.put(categorysKey, categorysJSON);
     }
 
-    public void load() {
+    public void loadCategorys() {
         Type categorysType = new TypeToken<HashMap<String, Category>>() {}.getType();
         categorys = gson.fromJson(kvs.get(categorysKey), categorysType);
         if(categorys == null) {
             categorys = new HashMap<String, Category>();
+        }
+    }
+
+    private void saveCustomers() {
+        customersJSON = gson.toJson(customers);
+        kvs.put(customersKey, customersJSON);
+    }
+
+    private void loadCustomers() {
+        Type customersType = new TypeToken<HashMap<String, Customer>>() {}.getType();
+        customers = gson.fromJson(kvs.get(customersKey), customersType);
+        if(customers == null) {
+            customers = new HashMap<String, Customer>();
         }
     }
 
@@ -89,11 +108,11 @@ public class Database {
     }
 
     public void addCategory(String name) {
-        load();
+        loadCategorys();
         if(!categorys.containsKey(name)) {
             categorys.put(name, new Category(name));
         }
-        save();
+        saveCategorys();
     }
 
     public List<Category> getCategoryList() {
@@ -104,6 +123,12 @@ public class Database {
         if(categorys.containsKey(name)) {
             categorys.remove(name);
         }
+    }
+
+    public void addCustomer(Customer customer) {
+        loadCustomers();
+        customers.put(customer.getEmail(), customer);
+        saveCustomers();
     }
 
     public void setCategorys(Map<String, Category> categorys) {

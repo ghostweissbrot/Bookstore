@@ -1,6 +1,5 @@
 package servlets;
 
-import backend.Book;
 import backend.Database;
 
 import javax.servlet.ServletException;
@@ -46,7 +45,7 @@ public class RemoveBookServlet extends HttpServlet {
 
             if(database.containsBook(isbn)) {
                 database.removeBook(isbn);
-                database.save();
+                database.saveCategorys();
                 response.sendRedirect("/listBooks");
             } else {
                 printWriter.println("Book not present.");

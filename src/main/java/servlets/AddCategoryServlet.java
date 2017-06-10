@@ -1,7 +1,5 @@
 package servlets;
 
-import backend.Book;
-import backend.Category;
 import backend.Database;
 
 import javax.servlet.ServletException;
@@ -61,7 +59,7 @@ public class AddCategoryServlet extends HttpServlet {
 
             database = Database.getInstance();
             database.addCategory(name);
-            database.save();
+            database.saveCategorys();
 
             response.sendRedirect("/categories");
 

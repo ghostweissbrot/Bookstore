@@ -40,6 +40,7 @@ public class ShoppingCartBean {
             quantities.put(book, 1);
         }
         summary += book.getPrice();
+        summary = round(summary);
         return "/shoppingcart.xhtml";
     }
 
@@ -51,6 +52,7 @@ public class ShoppingCartBean {
             quantities.put(book, quantity);
         }
         summary += book.getPrice();
+        summary = round(summary);
         return "/shoppingcart.xhtml";
     }
 
@@ -84,9 +86,9 @@ public class ShoppingCartBean {
                 quantities.put(book, quantities.get(book) - 1);
             }
             summary -= book.getPrice();
-            summary = round(summary,2);
+            summary = round(summary);
         }
-        summary = round(summary,2);
+        summary = round(summary);
         return "shoppingcart.xhtml";
     }
 
@@ -98,11 +100,12 @@ public class ShoppingCartBean {
         if(basket.isEmpty()) {
             summary = 0.0;
         }
-        summary = round(summary,2);
+        summary = round(summary);
         return "shoppingcart.xhtml";
     }
 
-    public static double round(double value, int places) {
+    public static double round(double value) {
+        int places = 2;
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);

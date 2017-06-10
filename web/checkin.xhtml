@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Warenkorb</title>
+</h:head>
+
+<h:body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+    <h:form>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a class="nav-item" href="/index.jsf">
+                        <img src="https://cdn.genialokal.de/chameleon/mediapool/thumbs/f/cf/Logo-Dauelsberg-jpg_1140x390-ID10683-1279968186f75eebd8fbfe3e14922fc0.jpg"
+                             alt="Bulma logo" href="index.jsf"/>
+                    </a>
+                    <a href="index.jsf" class="nav-item is-tab is-hidden-mobile">Startseite</a>
+                    <a href="categories.jsf" class="nav-item is-tab is-hidden-mobile">Kategorien</a>
+                </div>
+                <span class="nav-toggle">
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		    </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet">Startseite</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Kategorien</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Angebote</a>
+
+                    <p class="nav-item is-tab has-icon">
+                        <input class="input" type="text" placeholder="Suche nach.."/>
+                        <a href="stoebern.html">
+                            <button class="button">
+                                Suche
+                            </button>
+                        </a>
+                    </p>
+
+
+                    <a class="nav-item is-tab is-active">
+                        <figure class="image is-16x16" style="margin-right: 8px;">
+                            <img src="http://www.kingbutton.de/generator/images/warenkorb.png"/>
+                        </figure>
+                        Warenkorb
+                    </a>
+                    <!-- <a class="nav-item is-tab">Log in</a> -->
+                </div>
+            </div>
+        </nav>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Ihre Daten
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="field">
+                                <label class="label">Vorname</label>
+                                <p class="control">
+                                    <h:inputText
+                                            id="firstname"
+                                            styleClass="input"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Der Vorame darf nur aus Buchstaben bestehen und maximal 30 Zeichen lang sein!"
+                                            value="#{customerBean.firstname}">
+                                        <f:validateRegex pattern="^[a-zA-ZßöäüÖÄÜ ]*$"/>
+                                        <f:validateLength minimum="1" maximum="30"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="firstname"/>
+                                    </p>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Nachname</label>
+                                <p class="control">
+                                    <h:inputText
+                                            styleClass="input"
+                                            id="lastname"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Der Nachname darf nur aus Buchstaben bestehen und maximal 30 Zeichen lang sein!"
+                                            value="#{customerBean.lastname}">
+                                        <f:validateRegex pattern="^[a-zA-ZßöäüÖÄÜ ]*$"/>
+                                        <f:validateLength minimum="1" maximum="30"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="lastname"/>
+                                    </p>
+                                </p>
+                            </div>
+
+                            <br></br>
+
+                            <div class="field">
+                                <label class="label">Strasse</label>
+                                <p class="control">
+                                    <h:inputText
+                                            styleClass="input"
+                                            id="street"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Der Straßenname darf nur aus Buchstaben bestehen!"
+                                            value="#{customerBean.street}">
+                                        <f:validateRegex pattern="^[a-zA-ZßöäüÖÄÜ ]*$"/>
+                                        <f:validateLength minimum="1" maximum="30"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="street"/>
+                                    </p>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Hausnummer</label>
+                                <p class="control">
+                                    <h:inputText
+                                            styleClass="input"
+                                            id="number"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Die Hausnummer darf nur aus Zahlen bestehen!"
+                                            value="#{customerBean.number}">
+                                        <f:validateRegex pattern="^[0-9]*$"/>
+                                        <f:validateLength minimum="1" maximum="5"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="number"/>
+                                    </p>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Postleitzahl</label>
+                                <p class="control">
+                                    <h:inputText
+                                            styleClass="input"
+                                            id="postcode"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Die Postleitzahl darf nur aus Zahlen bestehen und muss 5 Zeichen lang sein!"
+                                            value="#{customerBean.postcode}">
+                                        <f:validateRegex pattern="^[0-9]*$"/>
+                                        <f:validateLength minimum="5" maximum="5"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="postcode"/>
+                                    </p>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Ort</label>
+                                <p class="control">
+                                    <h:inputText
+                                            styleClass="input"
+                                            id="location"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Der Ort darf nur aus Buchstaben bestehen!"
+                                            value="#{customerBean.location}">
+                                        <f:validateRegex pattern="^[a-zA-ZßöäüÖÄÜ ]*$"/>
+                                        <f:validateLength minimum="1" maximum="40"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="location"/>
+                                    </p>
+                                </p>
+                            </div>
+
+                            <br></br>
+
+                            <div class="field">
+                                <label class="label">E-Mail</label>
+                                <p class="control">
+                                    <h:inputText
+                                            id="email"
+                                            styleClass="input"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            validatorMessage="Fehlerhafte E-Mail-Adresse!"
+                                            value="#{customerBean.email}">
+                                        <f:validateLength minimum="1" maximum="40"/>
+                                        <f:validateRegex pattern=".+@.+\..+"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="email"/>
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <h:selectOneRadio value="#{customerBean.paymentMethod}">
+                                <f:selectItem itemValue="Kreditkarte" itemLabel="Kreditkarte"/>
+                                <f:selectItem itemValue="Rechnung" itemLabel="Rechnung"/>
+                                <f:selectItem itemValue="Vorkasse" itemLabel="Vorkasse"/>
+                            </h:selectOneRadio>
+                            <br></br>
+                            <br></br>
+
+                            <div class="field">
+                                <label class="label">Kartentyp</label>
+                                <h:selectOneMenu value="#{customerBean.cardType}">
+                                    <f:selectItem itemValue="visa" itemLabel="Visa"/>
+                                    <f:selectItem itemValue="mastercard" itemLabel="MasterCard"/>
+                                    <f:selectItem itemValue="americanexpress" itemLabel="American Express"/>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Kreditkartennummer</label>
+                                <p class="control">
+                                    <h:inputText
+                                            id="creditCardNumber"
+                                            styleClass="input"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            value="#{customerBean.creditCardNumber}">
+                                        <f:validateLength minimum="16" maximum="16"/>
+                                        <f:validateRegex pattern="^[0-9]*$"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="creditCardNumber"/>
+                                    </p>
+                                </p>
+
+                                <label class="label">Prüfziffer</label>
+                                <p class="control">
+                                    <h:inputText
+                                            id="checksum"
+                                            styleClass="input"
+                                            required="true"
+                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
+                                            value="#{customerBean.checksum}">
+                                        <f:validateLength minimum="2" maximum="3"/>
+                                        <f:validateRegex pattern="^[0-9]*$"/>
+                                    </h:inputText>
+                                    <p class="help is-danger">
+                                        <h:message for="checksum"/>
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <table class="table is-narrow">
+                                <thead>
+                                <tr>
+                                    <th>Zusammenfassung</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+
+                                </tr>
+                                </thead>
+
+                                <tr>
+                                    <td>Artikel:</td>
+                                    <td>#{shoppingCartBean.summary} €</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Versandkosten:</td>
+                                    <td>2 €</td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Betrag:</strong></td>
+                                    <td><strong>#{(shoppingCartBean.summary + 2)} €</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <nav class="level">
+                            <div class="level-item has-text-centered">
+                                <h:commandButton
+                                        styleClass="button is-primary is-medium"
+                                        value="Zur Bestellübersicht"
+                                        action="/checkout.jsf"
+                                        style="border-color: transparent"/>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+
+</html>

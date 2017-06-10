@@ -5,11 +5,11 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<head>
+<h:head>
     <title>Warenkorb</title>
-</head>
+</h:head>
 
-<body>
+<h:body>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -157,9 +157,11 @@
                     </div>
                     <nav class="level">
                         <div class="level-item has-text-centered">
-                            <a href="checkin.html" class="control">
-                                <button class="button is-primary is-medium">Zur Kasse gehen</button>
-                            </a>
+                            <h:commandButton
+                                    styleClass="button is-primary is-medium"
+                                    value="Zur Kasse gehen"
+                                    action="/checkin.jsf"
+                                    style="border-color: transparent"/>
                         </div>
                     </nav>
                 </div>
@@ -168,6 +170,6 @@
     </div>
 </h:form>
 
-</body>
+</h:body>
 
 </html>
