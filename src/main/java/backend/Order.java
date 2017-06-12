@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by smint on 12.06.17.
@@ -8,7 +9,7 @@ import java.util.List;
 public class Order {
 
     private String customerEmail;
-    private List<String> booknames;
+    private Map<String, Integer> books;
     private double summary;
 
     public String getCustomerEmail() {
@@ -19,12 +20,12 @@ public class Order {
         this.customerEmail = customerEmail;
     }
 
-    public List<String> getBooknames() {
-        return booknames;
+    public Map<String, Integer> getBooks() {
+        return books;
     }
 
-    public void setBooknames(List<String> booknames) {
-        this.booknames = booknames;
+    public void setBooks(Map<String, Integer> books) {
+        this.books = books;
     }
 
     public double getSummary() {

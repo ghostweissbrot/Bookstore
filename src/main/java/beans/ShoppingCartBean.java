@@ -129,13 +129,16 @@ public class ShoppingCartBean {
         //TODO save order details in KVS
         Order order = new Order();
         order.setSummary(round(2.0+summary));
-        ArrayList<String> booknames = new ArrayList<String>();
+        Map<String, Integer> books = new HashMap<String, Integer>();
+
         for(Book book : basket) {
-            booknames.add(book.getTitle());
+            books.put(book.getTitle(),quantities.get(book));
         }
+
         order.setCustomerEmail(customerBean.getEmail());
-        order.setBooknames(booknames);
+        order.setBooks(books);
         Database.getInstance().addOrder(order);
+
         reset();
         return "/finish.jsf";
     }
