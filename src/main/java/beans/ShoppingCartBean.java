@@ -145,6 +145,9 @@ public class ShoppingCartBean {
     }
 
     public void valueChangeListener(ValueChangeEvent e) {
-        //TODO implement quantity update
+        Book book = (Book) ((UIInput) e.getSource()).getAttributes().get("currentBook");
+        int quantity = Integer.parseInt(e.getNewValue().toString());
+        quantities.put(book,quantity);
+        updateSummary();
     }
 }

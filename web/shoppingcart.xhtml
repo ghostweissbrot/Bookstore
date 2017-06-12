@@ -101,7 +101,9 @@
                                             <p class="control">
                                                 <div class="field">
                                                     <h:selectOneMenu value="#{shoppingCartBean.quantities.get(book)}"
+                                                                     valueChangeListener="#{shoppingCartBean.valueChangeListener}"
                                                                             onchange="submit();">
+                                                        <f:attribute value="#{book}" name="currentBook"></f:attribute>
                                                         <f:selectItem itemValue="1" itemLabel="1"/>
                                                         <f:selectItem itemValue="2" itemLabel="2"/>
                                                         <f:selectItem itemValue="3" itemLabel="3"/>
