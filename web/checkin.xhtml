@@ -235,8 +235,6 @@
                                     <h:inputText
                                             id="creditCardNumber"
                                             styleClass="input"
-                                            required="true"
-                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
                                             value="#{customerBean.creditCardNumber}">
                                         <f:validateLength minimum="16" maximum="16"/>
                                         <f:validateRegex pattern="^[0-9]*$"/>
@@ -251,8 +249,6 @@
                                     <h:inputText
                                             id="checksum"
                                             styleClass="input"
-                                            required="true"
-                                            requiredMessage="Dieses Feld muss ausgefüllt werden!"
                                             value="#{customerBean.checksum}">
                                         <f:validateLength minimum="2" maximum="3"/>
                                         <f:validateRegex pattern="^[0-9]*$"/>

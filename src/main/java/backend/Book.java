@@ -1,6 +1,6 @@
 package backend;
 
-
+//stefan ist kacke lol
 public class Book {
 
     private String title;
