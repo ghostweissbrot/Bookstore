@@ -21,21 +21,24 @@ public class Database {
     private KeyValueStore kvs;
     private Map<String, Category> categorys;
     private Map<String, Customer> customers;
+    private Map<String, List<Order>> orders;
 
     private Gson gson;
 
     private String categorysJSON;
     private String customersJSON;
+    private String ordersJSON;
 
     private static final String categorysKey= "rFmN7V4NVROK29doJcAsOos6T4OVXtiqup7DF5ui";
     private static final String customersKey= "si51I7duWBzNK3XUhB2LXBAsK8y25XriIZH6dgmx";
+    private static final String ordersKey= "4n9QUgsY1zasQM4Ka080jKXODKERdBX4t6xeodeg";
 
     private Database() {
         gson = new Gson();
-        categorysJSON="";
         kvs = new KeyValueStore();
         categorys = new HashMap<String, Category>();
         customers = new HashMap<String, Customer>();
+        orders = new HashMap<String, List<Order>>();
         loadCategorys();
         loadCustomers();
     }
@@ -101,6 +104,28 @@ public class Database {
         if(customers == null) {
             customers = new HashMap<String, Customer>();
         }
+    }
+
+    private void saveOrders() {
+        ordersJSON = gson.toJson(orders);
+        kvs.put(ordersKey, ordersJSON);
+    }
+
+    private void loadOrders() {
+        Type ordersType = new TypeToken<HashMap<String, List<Order>>>() {}.getType();
+        orders = gson.fromJson(kvs.get(ordersKey), ordersType);
+        if(orders == null) {
+            orders = new HashMap<String, List<Order>>();
+        }
+    }
+
+    public void addOrder(Order order) {
+        loadOrders();
+        if(!orders.containsKey(order.getCustomerEmail())) {
+            orders.put(order.getCustomerEmail(), new ArrayList<Order>());
+        }
+        orders.get(order.getCustomerEmail()).add(order);
+        saveOrders();
     }
 
     public Map<String, Category> getCategorys() {

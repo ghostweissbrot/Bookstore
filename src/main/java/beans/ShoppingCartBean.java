@@ -1,8 +1,11 @@
 package beans;
 
 import backend.Book;
+import backend.Database;
+import backend.Order;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIInput;
 import javax.faces.event.ValueChangeEvent;
@@ -29,6 +32,9 @@ public class ShoppingCartBean {
     public List<Book> getBasket() {
         return basket;
     }
+
+    @ManagedProperty(value="#{customerBean}")
+    private CustomerBean customerBean;
 
     public double getSummary() {
         return summary;
@@ -121,6 +127,15 @@ public class ShoppingCartBean {
 
     public String finish() {
         //TODO save order details in KVS
+        Order order = new Order();
+        order.setSummary(round(2.0+summary));
+        ArrayList<String> booknames = new ArrayList<String>();
+        for(Book book : basket) {
+            booknames.add(book.getTitle());
+        }
+        order.setCustomerEmail(customerBean.getEmail());
+        order.setBooknames(booknames);
+        Database.getInstance().addOrder(order);
         reset();
         return "/finish.jsf";
     }
@@ -149,5 +164,13 @@ public class ShoppingCartBean {
         summary += quantity * book.getPrice();
         quantities.put(book, quantity);
         summary = round(summary);
+    }
+
+    public CustomerBean getCustomerBean() {
+        return customerBean;
+    }
+
+    public void setCustomerBean(CustomerBean customerBean) {
+        this.customerBean = customerBean;
     }
 }
