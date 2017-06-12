@@ -97,9 +97,10 @@ public class ShoppingCartBean {
     private void updateSummary() {
         double temp = 0;
         for(Map.Entry<Book, Integer> entry : quantities.entrySet()) {
-            temp += entry.getKey().getPrice() * ((double)entry.getValue());
+            temp += ((Book)entry.getKey()).getPrice() * ((double)entry.getValue());
         }
         temp = round(temp);
+        System.out.println("Updated");
         summary = temp;
     }
 
@@ -145,9 +146,14 @@ public class ShoppingCartBean {
     }
 
     public void valueChangeListener(ValueChangeEvent e) {
-        Book book = (Book) ((UIInput) e.getSource()).getAttributes().get("currentBook");
+        UIInput temp = (UIInput) e.getSource();
+        Object object =temp.getAttributes().get("currentBook");
+        Book book = (Book) object;
+
+        summary -= ((double)quantities.get(book)) * book.getPrice();
         int quantity = Integer.parseInt(e.getNewValue().toString());
-        quantities.put(book,quantity);
-        updateSummary();
+        summary += quantity * book.getPrice();
+        quantities.put(book, quantity);
+        summary = round(summary);
     }
 }
