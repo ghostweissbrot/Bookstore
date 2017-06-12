@@ -84,17 +84,4 @@ public class Book {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    public void initPlaceholder() {
-        String ph = "placeholder";
-        title = ph;
-        author = ph;
-        publisher = ph;
-        category = ph;
-        releasedate = ph;
-        isbn = ph;
-        description = ph;
-        image_url = "http://funnypictures4.fjcdn.com/pictures/Still+nothing+to+see+here+more+appropriate+than+ever+for_d048f3_5678875.jpg";
-        price= 0.00;
-    }
 }

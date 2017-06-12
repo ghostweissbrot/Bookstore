@@ -48,28 +48,24 @@ public class ShoppingCartBean {
 
     public String addBook(Book book, int quantity) {
         if (basket.contains(book)) {
-            quantities.put(book, quantities.get(book) + quantity);
+            if(quantity+quantities.get(book)>5) {
+                quantities.put(book, 5);
+                summary += ((double) 5-quantities.get(book)) * book.getPrice();
+            } else {
+                quantities.put(book, quantities.get(book) + quantity);
+                summary += ((double)quantity) * book.getPrice();
+            }
         } else {
             basket.add(book);
             quantities.put(book, quantity);
+            summary += ((double)quantity) * book.getPrice();
         }
-        summary += ((double)quantity) * book.getPrice();
         summary = round(summary);
         return "/shoppingcart.xhtml";
     }
 
     public int getQuantity(Book book) {
         return quantities.get(book);
-    }
-
-    public List<Integer> getAllowedQuantities() {
-        List<Integer> temp = new ArrayList<Integer>();
-        temp.add(1);
-        temp.add(2);
-        temp.add(3);
-        temp.add(4);
-        temp.add(5);
-        return temp;
     }
 
     public void setQuantity(Book book, int quantity) {
@@ -97,11 +93,9 @@ public class ShoppingCartBean {
     private void updateSummary() {
         double temp = 0;
         for(Map.Entry<Book, Integer> entry : quantities.entrySet()) {
-            temp += ((Book)entry.getKey()).getPrice() * ((double)entry.getValue());
+            temp += entry.getKey().getPrice() * ((double)entry.getValue());
         }
-        temp = round(temp);
-        System.out.println("Updated");
-        summary = temp;
+        summary = round(temp);
     }
 
     public String removeBook(Book book) {
