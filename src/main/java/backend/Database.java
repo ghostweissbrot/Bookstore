@@ -41,6 +41,7 @@ public class Database {
         orders = new HashMap<String, List<Order>>();
         loadCategorys();
         loadCustomers();
+        loadOrders();
     }
 
     public static Database getInstance() {

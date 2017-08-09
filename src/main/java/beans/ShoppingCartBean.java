@@ -81,21 +81,6 @@ public class ShoppingCartBean {
         }
     }
 
-    public String decreaseQuantity(Book book) {
-        if (basket.contains(book)) {
-            if (quantities.get(book) == 1) {
-                basket.remove(book);
-                quantities.remove(book);
-            } else {
-                quantities.put(book, quantities.get(book) - 1);
-            }
-            summary -= book.getPrice();
-            summary = round(summary);
-        }
-        summary = round(summary);
-        return "shoppingcart.xhtml";
-    }
-
     private void updateSummary() {
         double temp = 0;
         for(Map.Entry<Book, Integer> entry : quantities.entrySet()) {
@@ -176,4 +161,5 @@ public class ShoppingCartBean {
     public void setCustomerBean(CustomerBean customerBean) {
         this.customerBean = customerBean;
     }
+
 }
